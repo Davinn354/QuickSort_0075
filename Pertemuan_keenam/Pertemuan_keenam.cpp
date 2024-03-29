@@ -39,3 +39,13 @@ void swap(int x, int y)
 
 
 }
+
+void q_short(int low, int hight)
+{
+
+	int temp;
+	int pivot, i, j;
+	if (low > hight) {// step 1
+		
+	}
+}
