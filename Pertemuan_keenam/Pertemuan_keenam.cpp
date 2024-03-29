@@ -40,33 +40,89 @@ void swap(int x, int y)
 
 }
 
-void q_short(int low, int hight)
+void q_short(int low, int high)
 {
 
 	int temp;
 	int pivot, i, j;
-	if (low > hight) {// step 1
+	if (low > high) {// step 1
 		return;
 	}
 
 	pivot = arr[low];//step 2
 	i = low + 1; // step 3
-	j + hight; //ste 4
+	j = high; //ste 4
 
 
 	while (i <= j) //step 10
 	{
 		// search for an element greater than pivot
-		while ((arr[i] <= pivot) && (i <= hight)) //step 5
+		while ((arr[i] <= pivot) && (i <= high)) //step 5
 		{
-			i == // step 6
-				cmp_count++;
+			i++; // step 6
+			cmp_count++;
 		}
 		cmp_count++;
 		//Search for an element less than or equal to pivot
 		while ((arr[j] > pivot) && (j >= low)) //step 7
 		{
 			j--; //step 8
+			cmp_count++;
+		}
+		cmp_count++;
+		if (i < j) // step 9
+		{
+			//swap the element at index i with the element at index j
+			swap(i, j);
 		}
 	}
+
+	if (low < j) {//step 11
+		//swap the pivot element with the element at index j
+		swap(low, j);
+	}
+
+	//recursive call to sort the left sub array
+	q_short(low, j - 1); //step 12
+
+	//recusrsive call to sort the right array
+
+	q_short(j + 1, high); //step 13
+
+
+}
+
+
+void display() {
+	cout << "\n------------------" << endl;
+	cout << "Sorted Array" << endl;
+	cout << "------------------" << endl;
+
+	for (int i = 0; i < n; i++)
+	{
+		cout << arr[i] << " ";
+	}
+
+	cout << "\n\nNumber of comparasions: " << cmp_count << endl;
+	cout << "Nu,ber of data movements: " << mov_count << endl;
+}
+int main()
+{
+	char ch;
+
+	do {
+		input();
+		q_short(0, n - 1);
+		display();
+		cout << "\n\nDo you want to continue? (y/n): ";
+		cin >> ch;
+		if (ch == 'n' || ch == 'n')
+			break;
+		system("pause");
+		system("cls");
+
+
+	} while (true);
+
+	return 0;
 }
